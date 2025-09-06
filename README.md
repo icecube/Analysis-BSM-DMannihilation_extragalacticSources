@@ -19,13 +19,13 @@ export PYTHONPATH=/cvmfs/icecube.opensciencegrid.org/users/tkontrimas/software/p
 ## Folder structure
 
 ### data_generation
-contains script needed to generate OscNext exp and simulation data. NorthernTrack data can be extracted from nu-source data storage.
+the folder contains scripts that needed to extract OscNext experimental data and apply cuts. NorthernTrack data can be extracted from nu-source data storage by SkyLLH. The simulation data is not needed because we scrambling the exp data to generated the background.
 
 ### spectra
-contains [PPPC](http://www.marcocirelli.net/PPPC4DMID.html) all spetra data and the script to extract needed neutrino spectra
+The spectra are taken from [PPPC](http://www.marcocirelli.net/PPPC4DMID.html) . The folder contains all spetra data and the script to extract needed channel and neutrino spectra
 
 ### source list
 Source list for two (DM and powerlaw) weighting scene.
 
 ### analyses
-contains script to generate trials on NPX cluster for all 4 analyses cases. And the script for following sensitivity and detection potential calculations.
+contains script to generate trials on NPX cluster for all 4 analyses cases. And the scripts for sensitivity and detection potential calculations.
