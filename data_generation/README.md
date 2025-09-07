@@ -13,5 +13,5 @@ contain .npy data files (output from submit_data) that will be read by SkyLLH.
 They are convert to IC86-2011-2021 dataset under `/data/user/liruohan/software/i3skyllh/i3skyllh/datasets/OscNext_v002p04.py`
 
 ### test_notebook ###
-only contains the notebook to check NorthernTracks and OscNext energy/AngErr distribution, not directly related to the analysis
+only contains the notebook to check NorthernTracks and OscNext energy/AngErr distribution. They are not directly related to the analysis.
 
