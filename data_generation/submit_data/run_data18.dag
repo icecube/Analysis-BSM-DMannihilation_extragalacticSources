@@ -1,0 +1,2 @@
+JOB job_6 run_data.submit
+VARS job_6 YEAR="18"
