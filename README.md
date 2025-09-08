@@ -29,3 +29,6 @@ Source list for two (DM and powerlaw) weighting scene.
 
 ### analyses
 contains script to generate trials on NPX cluster for all 4 analyses cases. And the scripts for sensitivity and detection potential calculations.
+
+### compute_sens_dp_from_trials
+contains script check bkg-TS distribution, ns-bias, and compute sensitivity and detect potential.
