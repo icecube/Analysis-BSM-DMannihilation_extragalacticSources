@@ -1,0 +1,2 @@
+run `run_stacking_sens_dp.sh` to compute the sensitivity and detect potential. One need to change the input path to 100GeV/1TeV/10TeV accordingly. The outputs are results.txt and P(Ts>T_crit) plots.
+The `plot_nbias_corrected.py` and `plot_bkg.py` can generate TS and ns-bias-plot.
