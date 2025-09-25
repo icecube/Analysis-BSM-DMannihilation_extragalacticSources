@@ -4,9 +4,9 @@
 
 Environment: `/cvmfs/icecube.opensciencegrid.org/py3-v4.3.0/setup.sh`
 
-Dataset: `/data/ana/analyses/northern_tracks/version-005-p02` and (add OscNext path)
+Dataset: `/data/ana/analyses/northern_tracks/version-005-p02` and OscNext High Stat data
 
-Software: [SkyLLH](https://github.com/icecube/skyllh/tree/dm) and [i3SkyLLH](https://github.com/icecube/i3skyllh/tree/https://github.com/icecube/skyllh/tree/dm)
+Software: SkyLLH dm branch  [SkyLLH](https://github.com/icecube/skyllh/tree/dm) and [i3SkyLLH](https://github.com/icecube/i3skyllh/tree/https://github.com/icecube/skyllh/tree/dm)
 
 In the executable script add `skyllh` and `i3skyllh` software and `photospline` package to the `PYTHONPATH`:
 
@@ -19,16 +19,16 @@ export PYTHONPATH=/cvmfs/icecube.opensciencegrid.org/users/tkontrimas/software/p
 ## Folder structure
 
 ### data_generation
-the folder contains scripts that needed to extract OscNext experimental data and apply cuts. NorthernTrack data can be extracted from nu-source data storage by SkyLLH. The simulation data is not needed because we scrambling the exp data to generated the background.
+the folder contains scripts to extract OscNext experimental data and apply cuts. NorthernTrack data can be read from nu-source data storage by SkyLLH. The simulation data is not needed because we scrambling the exp data to generated the background.
 
 ### spectra
-The spectra are taken from [PPPC](http://www.marcocirelli.net/PPPC4DMID.html) . The folder contains all spetra data and the script to extract needed channel and neutrino spectra
+The spectra .dat are taken from [PPPC](http://www.marcocirelli.net/PPPC4DMID.html) . The folder contains all spetra data and the notebook to: 1. extract neutrino spectra at given energy and channel; 2.  generate spectra spline and smoothen the tail. The outpout .fits spline will read by SkyLLH. 
 
 ### source list
 Source list for two (DM and powerlaw) weighting scene.
 
 ### analyses
-contains script to generate trials on NPX cluster for all 4 analyses cases. And the scripts for sensitivity and detection potential calculations.
+contains scripts to generate trials on NPX cluster for all 4 analyses cases.
 
 ### compute_sens_dp_from_trials
-contains script check bkg-TS distribution, ns-bias, and compute sensitivity and detect potential.
+contains scripts check bkg-TS distribution, ns-bias, and compute sensitivity and detect potential.
