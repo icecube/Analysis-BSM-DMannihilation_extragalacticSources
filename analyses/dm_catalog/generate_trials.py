@@ -33,7 +33,7 @@ parser.add_argument("--n_trials", "-nt", help="number of trials per job", type=i
 parser.add_argument("--outdir", "-od", help="output folder", type=str, default='/data/user/liruohan/dm_model_stacking/trials/')
 parser.add_argument("--outfile", "-of", help="output file", type=str, default='test.npy')
 parser.add_argument("--rss_seed", "-rs", help="random_number_seed for mc generator", type=int, default=0)
-parser.add_argument("--dset", "-ds", help="name of the dataset to load for powerlaw analysis", type=str, default='OscNext_v002p04')#'OscNext_v002p04' or 'PointSourceTracks_v004p02'or 'NorthernTracks_v005p01_KDE_PDF_v007'
+parser.add_argument("--dset", "-ds", help="name of the dataset to load for powerlaw analysis", type=str, default='OscNext_v002p04')#'OscNext_v002p04'or 'NorthernTracks_v005p01'
 parser.add_argument("--base_path", "-bp", help="base path to the folder containing datasets", type=str, default='/data/ana/analyses/')
 parser.add_argument("--period", "-p", help="name of the data period to load", type=str, default="IC86, 2012-2021")#'IC86, 2011-2021' or "IC86, 2012-2021" or "IC86_2011-IC86_2021"
 parser.add_argument("--srcs_table_path", "-bstp", help="where to find sources pandas pkl table", type=str, default='/data/user/liruohan/dm_model_stacking/sources.pkl')
