@@ -14,8 +14,7 @@ from skyllh.core.config import Config
 from skyllh.core.minimizers.iminuit import IMinuitMinimizerImpl
 
 from i3skyllh.datasets import data_samples
-from i3skyllh.analyses.trad_stacked_ps import analysis_dm as trad_stacking_analysis
-#from i3skyllh.analyses.kdepdf_mcbg_stacked_ps import analysis as kde_stacking_analysis
+from i3skyllh.analyses.trad_stacked_ps import analysis as trad_stacking_analysis
 
 from skyllh.core.debugging import setup_logger, setup_console_handler
 #setup_logger('skyllh', logging.INFO)
@@ -30,13 +29,13 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--mean_ns", "-ns", help="how many signal events to inject on average", type=float, default=0.0)
 parser.add_argument("--gamma", "-g", help="spectral index for if injecting from powerlaw", type=float, default=2.0)
 parser.add_argument("--n_trials", "-nt", help="number of trials per job", type=int, default=10)
-parser.add_argument("--outdir", "-od", help="output folder", type=str, default='/data/user/liruohan/dm_model_stacking/trials/')
+parser.add_argument("--outdir", "-od", help="output folder", type=str, default='/data/user/liruohan/powerlaw_stacking/trials/')
 parser.add_argument("--outfile", "-of", help="output file", type=str, default='test.npy')
 parser.add_argument("--rss_seed", "-rs", help="random_number_seed for mc generator", type=int, default=0)
-parser.add_argument("--dset", "-ds", help="name of the dataset to load for powerlaw analysis", type=str, default='OscNext_v002p04')#'OscNext_v002p04' or 'PointSourceTracks_v004p02'or 'NorthernTracks_v005p01_KDE_PDF_v007'
+parser.add_argument("--dset", "-ds", help="name of the dataset to load for powerlaw analysis", type=str, default='NorthernTracks_v005p01')
 parser.add_argument("--base_path", "-bp", help="base path to the folder containing datasets", type=str, default='/data/ana/analyses/')
-parser.add_argument("--period", "-p", help="name of the data period to load", type=str, default="IC86, 2012-2021")#'IC86, 2011-2021' or "IC86, 2012-2021" or "IC86_2011-IC86_2021"
-parser.add_argument("--srcs_table_path", "-bstp", help="where to find sources pandas pkl table", type=str, default='/data/user/liruohan/dm_model_stacking/sources.pkl')
+parser.add_argument("--period", "-p", help="name of the data period to load", type=str, default='IC86_2011_2021')
+parser.add_argument("--srcs_table_path", "-bstp", help="where to find sources pandas pkl table", type=str, default='/data/user/liruohan/powerlaw_stacking/sources.pkl')
 parser.add_argument("--ncpus", "-nc", help="number of CPUs to use", type=int, default=4)
 parser.add_argument("--unblind", help="run the unblinded analysis", default=False, action="store_true")
 args=parser.parse_args()
@@ -79,34 +78,20 @@ ns_seed = 100
 evt_sel = 'spatialbox'
 optimize_delta_angle=10
 
-# ana_kde = kde_stacking_analysis.create_analysis(
-#     cfg=cfg,
-#     datasets=datasets,
-#     sources=sources,
-#     bkg_event_rate_field_names=['astro', 'conv'],
-#     refplflux_Phi0=1,
-#     refplflux_E0=1e3,
-#     refplflux_gamma=2.0,
-#     ns_seed=100.0,
-#     compress_data=True,
-#     construct_signal_generator=True, #
-#     evt_sel_delta_angle_deg=10,
-#     #energy_range=energy_range,
-#     minimizer_impl=minimizer_impl
-# )
-
 #%%scalene
-ana_stacking_dm = trad_stacking_analysis.create_analysis(
+ana_stacking = trad_stacking_analysis.create_analysis(
     cfg=cfg,
     datasets=datasets,
     sources=sources,
-    channel='WW',
-    mass=1000,
-#    bkg_event_rate_field_names=['astro', 'conv'],
-    compress_data=True,
+    refplflux_E0=1e3,    
     optimize_delta_angle_deg=10,
-    ns_seed=10,
-    ns_max=1e3,
+#    energy_range=(30,200),
+    ns_seed=100,
+    ns_max=1e4,
+    gamma_seed=2.5,
+    gamma_min=2.0,
+    gamma_max=4.0,
+    fit_gamma=True,
     minimizer_impl=minimizer_impl
 )
 
@@ -146,7 +131,7 @@ else:
     # Run trials.
     with tl.task_timer('Running trials.') as tt:
         (seed,mean_ns,mean_ns_null,trial_data)=create_trial_data_file(
-            ana=ana_stacking_dm,
+            ana=ana_stacking,
             ncpu=args.ncpus,
             rss=rss,
             pathfilename=trials_outfile,

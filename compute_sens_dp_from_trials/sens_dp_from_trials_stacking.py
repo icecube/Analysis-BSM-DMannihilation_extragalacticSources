@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 from scipy.stats import norm
 import glob
@@ -8,10 +10,10 @@ import argparse
 parser=argparse.ArgumentParser()
 parser.add_argument("--bkg_trials_dir", "-b", help="folder containing bkg trials",
         type=str,
-        default='/data/user/liruohan/dm_model_stacking/trials/1TeV/bkg/')
+        default='/data/user/liruohan/powerlaw_stacking/trials/bkg/')
 parser.add_argument("--sig_trials_dir", "-s", help="folder containing sig trials",
         type=str,
-        default='/data/user/liruohan/dm_model_stacking/trials/1TeV/sig/')
+        default='/data/user/liruohan/powerlaw_stacking/trials/sig/')
 args=parser.parse_args()
 print(args)
 
@@ -32,11 +34,11 @@ sig_trials_dict = {}
 
 # injected values
 #mus = np.linspace(0, 250, 251)
-mus = np.linspace(1, 100, 100)
+mus = np.linspace(1, 81, 81)
 for mu in mus:
 #    mu =int(mu) #could delete this line according to format
     print(str(mu))
-    fpath = args.sig_trials_dir + '/mean_ns{}_trials20_rss*.npy'.format(str(mu))
+    fpath = args.sig_trials_dir + '/mean_ns{}_rss*.npy'.format(str(mu))
     print(mu,fpath)
     #outfile = 'mean_ns{}_rss{:}.npy'.format(tns, rss_seed)
     sig_trials_dict[int(mu)] = np.concatenate([np.load(f) for f in glob.glob(fpath)])

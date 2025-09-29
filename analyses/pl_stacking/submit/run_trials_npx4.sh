@@ -17,6 +17,6 @@ export PYTHONPATH=/cvmfs/icecube.opensciencegrid.org/users/tkontrimas/software/p
 #export HDF5_USE_FILE_LOCKING=FALSE
 
 # code repo.
-code_path=/data/user/liruohan/dm_model_stacking
+code_path=/data/user/liruohan/Analysis-BSM-DMannihilation_extragalacticSources/analyses/pl_stacking
 
 python $code_path/generate_trials.py $@

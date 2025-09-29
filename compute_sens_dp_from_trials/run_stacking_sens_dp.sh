@@ -7,15 +7,15 @@ eval `/cvmfs/icecube.opensciencegrid.org/py3-v4.3.0/setup.sh`
 export PYTHONPATH="/data/user/liruohan/software/skyllh":$PYTHONPATH
 
 # point to analysis code repo
-code_path=/data/user/$USER/dm_model_stacking
+code_path=/data/user/liruohan/Analysis-BSM-DMannihilation_extragalacticSources
 
 export PYTHONPATH=$PYTHONPATH:$code_path/compute_sens_dp_from_trials
 
 # stacking trials without NGC 1068
 ## bkg_trials.
-bkg_trials_path=/data/user/$USER/dm_model_stacking/trials/1TeV/bkg
+bkg_trials_path=/data/user/$USER/powerlaw_stacking/trials/bkg
 ## sig_trials.
-sig_trials_path=/data/user/$USER/dm_model_stacking/trials/1TeV/sig
+sig_trials_path=/data/user/$USER/powerlaw_stacking/trials/sig
 
 ################################
 # stacking trials with NGC 1068.

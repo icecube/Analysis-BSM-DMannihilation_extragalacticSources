@@ -11,7 +11,7 @@ ntrials = 10
 ncpu =  4
 #period  = "IC86_2011-IC86_2021"
 
-outdir = "/data/user/liruohan/dm_model_stacking/trials/"
+outdir = "/data/user/liruohan/powerlaw_stacking/trials/"
 
 mean_ns = 0.0
 

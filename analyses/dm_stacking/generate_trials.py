@@ -35,7 +35,7 @@ parser.add_argument("--outfile", "-of", help="output file", type=str, default='t
 parser.add_argument("--rss_seed", "-rs", help="random_number_seed for mc generator", type=int, default=0)
 parser.add_argument("--dset", "-ds", help="name of the dataset to load for powerlaw analysis", type=str, default='OscNext_v002p04')#'OscNext_v002p04' or 'PointSourceTracks_v004p02'or 'NorthernTracks_v005p01_KDE_PDF_v007'
 parser.add_argument("--base_path", "-bp", help="base path to the folder containing datasets", type=str, default='/data/ana/analyses/')
-parser.add_argument("--period", "-p", help="name of the data period to load", type=str, default="IC86, 2012-2021")#'IC86, 2011-2021' or "IC86, 2012-2021" or "IC86_2011-IC86_2021"
+parser.add_argument("--period", "-p", help="name of the data period to load", type=str, default="IC86, 2012-2021")
 parser.add_argument("--srcs_table_path", "-bstp", help="where to find sources pandas pkl table", type=str, default='/data/user/liruohan/dm_model_stacking/sources.pkl')
 parser.add_argument("--ncpus", "-nc", help="number of CPUs to use", type=int, default=4)
 parser.add_argument("--unblind", help="run the unblinded analysis", default=False, action="store_true")
@@ -96,12 +96,12 @@ optimize_delta_angle=10
 # )
 
 #%%scalene
-ana_stacking_dm = trad_stacking_analysis.create_analysis(
+ana_stacking_dm = trad_stacking_analysis_dm.create_analysis(
     cfg=cfg,
     datasets=datasets,
     sources=sources,
     channel='WW',
-    mass=1000,
+    mass=10000,
 #    bkg_event_rate_field_names=['astro', 'conv'],
     compress_data=True,
     optimize_delta_angle_deg=10,

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 from scipy.stats import norm
 import glob
@@ -43,7 +45,7 @@ if analysis == "model":
     fout = open("sens_dp_catalog_{}_analysis.out".format(analysis),"w")
 
 elif analysis == "powerlaw":
-    fout = open("sens_dp_catalog_{}_analysis_gamma_{}.out".format(analysis,args.gamma),"w")
+    fout = open("sens_dp_catalog_{}_analysis.out".format(analysis),"w")
 
 fout.write("#name\tdec\tra\tsens\t3sigma dp\t 5sigma dp\n")
 
@@ -54,9 +56,9 @@ if analysis == "model":
     mu_range = np.linspace(0, 60, 61)
 elif analysis == "powerlaw":
     if args.gamma == 2.0:
-        mu_range = np.linspace(0, 20, 21)
+        mu_range = np.linspace(0, 50, 51)
     elif args.gamma == 3.0:
-        mu_range = np.linspace(0, 20, 21)
+        mu_range = np.linspace(0, 50, 51)
 
 for l,source in enumerate(names):
     #print(source)

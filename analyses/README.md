@@ -1,7 +1,8 @@
 ## Folder structure
 
-contains the scripts to run analysis example notebook(`example.ipynb`) and to generate trials (`submit` folder + `.py` script) on NPX cluster. Each folder corresponds to the an analysis scene.
+contains the scripts to run analysis example notebook(`analyses_example.ipynb`) and to generate trials (`submit` folder + `.py` script) on NPX cluster. Each folder corresponds to the an analysis scene.
 
+when submit trials, one need to change the `mass=10000`, in the `generate_trials.py` to ensure the analysis object is gnerated at correct reference energy.
 
 please notice:
 each analysis scene corresponds to a unique `analysis object` generate by SkyLLH
@@ -13,3 +14,6 @@ each analysis scene corresponds to a unique `analysis object` generate by SkyLLH
 the `ana.mu2flux(event number)` function converts events number to the flux. It is also only valid for each analysis scene. One can run it either in the notebook or by `get_mu2flux.py` script. The example input could be 'python3 get_mu2flux.py -ns 28.37 -md dm -c stacking -e 10000'
 
 An analysis objects in a notebook could use more than 4GB RAM (cause kernel dead/restarts).
+
+
+`bias_correction.ipynb` is an auxiliary notebook which is not directly relevant to the outputs.

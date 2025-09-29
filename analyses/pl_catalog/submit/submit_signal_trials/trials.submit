@@ -1,4 +1,4 @@
-executable  = /data/user/liruohan/dm_model_stacking/submit/run_trials_npx4.sh
+executable  = /data/user/liruohan/Analysis-BSM-DMannihilation_extragalacticSources/analyses/pl_catalog/submit/run_trials_npx4.sh
 arguments   = "-od $(OUTDIR) -of $(OFILE) -nt $(NTRIALS) -ns $(MEANNS) -rs $(RSS_SEED) -nc $(CPU)"
 
 universe    = vanilla

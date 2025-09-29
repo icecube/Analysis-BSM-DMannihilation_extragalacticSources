@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # load python environment.
-eval `/cvmfs/icecube.opensciencegrid.org/py3-v4.1.0/setup.sh`
+eval `/cvmfs/icecube.opensciencegrid.org/py3-v4.3.0/setup.sh`
 
 # skyllh.
 export PYTHONPATH="/data/user/tkontrimas/software/li/skyllh":$PYTHONPATH
 
 # point to analysis code repo
-code_path=/data/user/$USER/powerlaw
+code_path=/data/user/liruohan/Analysis-BSM-DMannihilation_extragalacticSources
 
 export PYTHONPATH=$PYTHONPATH:$code_path/compute_sens_dp_from_trials
 

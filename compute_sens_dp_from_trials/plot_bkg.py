@@ -274,10 +274,9 @@ else:
     # Use analysis option.
     # Background trials directories.
     bkg_dirs = {
-        #'catalog_model': '/data/user/liruohan/dm_model/trials/bkg',
         #'catalog_powerlaw': '/data/user/liruohan/powerlaw/trials/bkg/',
         #'stacking_powerlaw': '/data/user/liruohan/powerlaw_stacking/trials/bkg/',
-        'stacking_model': '/data/user/liruohan/dm_model_stacking/trials/1TeV/bkg/'
+        'stacking_model': '/data/user/liruohan/dm_model_stacking/trials/10TeV/bkg/'
     }
 
     if args.analysis == 'all':
