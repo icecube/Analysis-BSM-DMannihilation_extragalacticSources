@@ -26,42 +26,43 @@ print(args)
 # for file in os.listdir("/mydir"):
 #     if file.endswith(".txt"):
 #         print(os.path.join("/mydir", file))
-print(args.indir)
-print((('dm_model' in args.indir) and ('10TeV' in args.indir)),"?")
+path='/data/user/liruohan/dm_model_stacking/trials/10TeV/sig/'
+#for specific source: /data/user/liruohan/powerlaw/trials/sig/NGC3227/
 
 xs = np.linspace(1, 300, 300)
 str_mean_ns="mean_ns"
 str_trials = None
 str_fits= None
-str_suffix= 'rss*.npy'
+str_suffix= '_rss*.npy'
 name_str=None
-if  ('dm_model' in args.indir) and ('10TeV' in args.indir):
+if  ('dm_model' in path) and ('10TeV' in path):
     print('10TeV dm stacking case')
-    str_trials="_trials20_"
+    str_trials="_trials20"
     #mean_ns99.0_trials20_rss950.npy
     xs = np.linspace(1, 100, 100)
-elif ('dm_model' in args.indir) and ('1TeV' in args.indir):
+elif ('dm_model' in path) and ('1TeV' in path):
     print('1TeV dm stacking case')
-    str_trials="_trials20_"
+    str_trials="_trials20"
     #mean_ns99.0_trials20_rss950.npy
-elif ('dm_model' in args.indir) and ('100GeV' in args.indir):
+elif ('dm_model' in path) and ('100GeV' in path):
     str_trials="_trials20_"
-    print('100TeV dm stacking case')
-    str_mean_ns="mean_ns_inj"
-    str_fits = '_mean_ns_fit*_' #mean_ns_inj996.0_mean_ns_fit81_trials20_rss99.npy
-elif ('powerlaw_stacking' in args.indir):
+    print('100TeV dm stacing case')
+    str_mean_ns="mean_ns_inj*"
+    str_fits = '_mean_ns_fit' #mean_ns_inj996.0_mean_ns_fit81_trials20_rss99.npy
+elif ('powerlaw_stacking' in path):
     print('powerlaw stacking case')
      #mean_ns9.0_rss450.npy
+    str_trials=''
     xs=np.linspace(1, 81, 81)
-elif ('powerlaw_stacking' in args.indir):
+elif ('powerlaw/' in path):
     print('powerlaw catalog case')
-    str_trials="_trials20_"
-    name_str=str.split(args.indir)[-1]+"_" #NGC3227_mean_ns9_trials20_rss450.npy
-    print(name_str)
-    xs=np.linspace(0, 50, 51)
+    str_mean_ns="_mean_ns"
+    str_trials="_trials20"
+    name_str= (path.split('/')[-2]) #NGC3227_mean_ns9_trials20_rss450.npy
+    print('name string', name_str)
+    xs=np.linspace(1, 51, 51)
 else:
     print('unknown path to trials')
-    break
 
     
 def get_data(indir, ns_str_list, var='ns'):
@@ -72,8 +73,10 @@ def get_data(indir, ns_str_list, var='ns'):
     for ns in ns_str_list:
         print(ns)
         vals = []
-        if ('powerlaw_stacking' in args.indir):
+        if ('powerlaw/' in path):
             file_name=name_str+str_mean_ns+ns[:-2]+str_trials+str_suffix
+        elif('100GeV' in path):
+            file_name=str_mean_ns+str_fits+ns[:-2]+str_trials+str_suffix
         else:
             file_name=str_mean_ns+ns+str_trials+str_suffix
         print(file_name)
@@ -99,7 +102,7 @@ mean_ns_list = [f'{x:.1f}' for x in xs]
 fig = plt.figure(figsize=(8, 6), dpi=200)
 ax = plt.axes()
 
-indir = args.indir
+indir = path
 
 data, means = get_data(indir, mean_ns_list)
 y_low2, y_low, y_mid, y_high, y_high2 = zip(*data)
@@ -133,4 +136,4 @@ ax.yaxis.set_ticks_position('both')
 
 plt.tight_layout()
 
-plt.savefig("{}_ns_bias.png".format(''))
+plt.savefig("{}_ns_bias.png".format(path))
